@@ -73,6 +73,7 @@ var gravity = 0;
 var stars = [];
 var bob = new Star();
 var i;
+var speed = 5;
 
 
 
