@@ -3,7 +3,7 @@
 	this.color = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
 	this.height = (Math.random() * width * 0.75);
 	this.thicc = 50;
-	this.barrier = 10;
+	this.barrier = 5;
 }
 
 Pillar.prototype.draw = function(){
@@ -25,7 +25,7 @@ Pillar.prototype.update = function(){
 		this.barrier = 10;
 		score++;
 	}
-	this.y += speed+(score/2);
+	this.y += speed+(Math.log(score*100+1));
 }
 
 Pillar.prototype.collision = function(){

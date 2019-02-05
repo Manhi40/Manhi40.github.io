@@ -39,8 +39,26 @@ window.addEventListener('keydown', function(event) { Key.onKeydown(event); }, fa
 
 function EndGame(){
 	if(gameStatus){
+    ctx.fillStyle = 'rgba(0,0,0,1)';
+  	ctx.fillRect(-2000,-2000,4*width,4*height);
+    for(i=0;i<stars.length;i++){
+      stars[i].update();
+      stars[i].draw();
+    }
+
+    pillar1.draw();
+    pillar2.draw();
+    pillar3.draw();
+    box.draw();
 		ctx.fillStyle = 'rgba(255,0,0,0.25)';
 		ctx.fillRect(-2000,-2000,3*width,5*height);
+    ctx.save();
+  	ctx.fillStyle = 'blue';
+  	ctx.font = '72px arial';
+
+    ctx.translate(-(canTran),0);
+  	ctx.fillText(score, width/2, height/8);
+    ctx.restore();
 	}
 }
 
@@ -59,6 +77,9 @@ function gameReset(){
   pillar1.height = (Math.random() * width * 0.85);
   pillar2.height = (Math.random() * width * 0.85);
   pillar3.height = (Math.random() * width * 0.85);
+  pillar1.barrier = 5;
+  pillar2.barrier = 5;
+  pillar3.barrier = 5;
   score = 0;
 
 }
@@ -94,8 +115,6 @@ function loop(){
       stars[i].draw();
     }
 
-    bob.draw();
-    bob.update();
 
   	pillar1.update();
   	pillar1.draw();
@@ -119,12 +138,13 @@ function loop(){
   	ctx.fillText(score, width/2, height/8);
     ctx.restore();
 
-  	EndGame();
+
 	}
   else{
     if (Key.isDown(Key.SPACE)){
       gameReset();
     }
+    EndGame();
 
   }
 	requestAnimationFrame(loop);
