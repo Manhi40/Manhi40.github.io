@@ -19,7 +19,7 @@ Pillar.prototype.draw = function(){
 
 Pillar.prototype.update = function(){
 	if(this.y >= height){
-		this.y = -(width);
+		this.y = -(height);
 		this.height = (Math.random() * height * 0.5);
     this.color = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
 		this.barrier = 10;
