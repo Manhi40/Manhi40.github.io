@@ -22,11 +22,11 @@ Box.prototype.draw = function(){
 	}
 
   ctx.beginPath();
-  ctx.moveTo(0,-50);
-  ctx.lineTo(50,50);
-  ctx.lineTo(0,25);
-  ctx.lineTo(-50,50);
-  ctx.lineTo(0,-50);
+  ctx.moveTo(0,-10);
+  ctx.lineTo(10,10);
+  ctx.lineTo(0,5);
+  ctx.lineTo(-10,10);
+  ctx.lineTo(0,-10);
   ctx.fill();
 
 	//ctx.fillRect(-this.size/2,-this.size/2,this.size,this.size);
@@ -43,20 +43,20 @@ Box.prototype.update = function(){
   if (Key.isDown(Key.UP)) this.laser();
   //if (Key.isDown(Key.DOWN)) this.y += 100;
   if (Key.isDown(Key.LEFT)){
-     this.x -= 100;
+     this.x -= 20;
 		 this.velX =-1.1;
 		 if(this.x>0){
-	     ctx.translate(25,0);
-			 canTran +=25;
+	     ctx.translate(5,0);
+			 canTran +=5;
 	 		}
      rotate++;
    }
   else if (Key.isDown(Key.RIGHT)){
-     this.x += 100;
+     this.x += 20;
 		 this.velX =1.1;
 		 if(this.x<width){
-	     ctx.translate(-25,0);
-			 canTran -= 25;
+	     ctx.translate(-5,0);
+			 canTran -= 5;
 	 	 }
 		 rotate--;
    }
@@ -92,12 +92,12 @@ Box.prototype.update = function(){
 
 Box.prototype.laser = function(){
 	ctx.strokeStyle  = 'rgb(255,0,0)'
-	ctx.lineWidth = 10;
+	ctx.lineWidth = 2;
 	ctx.beginPath();
-	ctx.moveTo(this.x+50,this.y);
-	ctx.lineTo(this.x+50,0);
+	ctx.moveTo(this.x+5,this.y);
+	ctx.lineTo(this.x+5,0);
 	ctx.stroke();
-	pillar1.Barrier(this.x+50);
-	pillar2.Barrier(this.x+50);
-	pillar3.Barrier(this.x+50);
+	pillar1.Barrier(this.x+5);
+	pillar2.Barrier(this.x+5);
+	pillar3.Barrier(this.x+5);
 }

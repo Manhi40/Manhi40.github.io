@@ -6,7 +6,7 @@ var width = canvas.width = window.innerWidth;
 var height = canvas.height = window.innerHeight;
 var pos = 0;
 var gameStatus = 0;
-var gapWidth = 1000;
+var gapWidth = 150;
 var score = 0;
 var canTran = 0;
 
@@ -40,7 +40,7 @@ window.addEventListener('keydown', function(event) { Key.onKeydown(event); }, fa
 function EndGame(){
 	if(gameStatus){
 		ctx.fillStyle = 'rgba(255,0,0,0.25)';
-		ctx.fillRect(-20000,-20000,30*width,30*height);
+		ctx.fillRect(-2000,-2000,3*width,5*height);
 	}
 }
 
@@ -63,7 +63,7 @@ function gameReset(){
 
 }
 
-var box = new Box(width/2,height*0.9,10,0,'rgb(0,255,0)',100);
+var box = new Box(width/2,height*0.9,10,0,'rgb(0,255,0)',10);
 var pillar1 = new Pillar(0);
 var pillar2 = new Pillar((-height));
 var pillar3 = new Pillar(-(height*2));
@@ -86,7 +86,7 @@ function loop(){
   if(!gameStatus){
     ctx.save();
     ctx.fillStyle = 'rgba(0,0,0,1)';
-  	ctx.fillRect(-20000,-20000,40*width,40*height);
+  	ctx.fillRect(-2000,-2000,4*width,4*height);
 
     for(i=0;i<stars.length;i++){
       stars[i].update();
@@ -112,7 +112,7 @@ function loop(){
     box.draw();
     ctx.save();
   	ctx.fillStyle = 'blue';
-  	ctx.font = '256px arial';
+  	ctx.font = '72px arial';
 
     ctx.translate(-(canTran),0);
   	ctx.fillText(score, width/2, height/8);

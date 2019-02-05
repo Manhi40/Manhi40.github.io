@@ -1,19 +1,19 @@
-function Pillar(start){
+ function Pillar(start){
 	this.y = start;
 	this.color = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
 	this.height = (Math.random() * width * 0.75);
-	this.thicc = 300;
+	this.thicc = 50;
 	this.barrier = 10;
 }
 
 Pillar.prototype.draw = function(){
 	if(this.barrier > 0){
 		ctx.fillStyle = 'rgb(255,255,255)';
-		ctx.fillRect(this.height,this.y+100,this.height+gapWidth,this.thicc-200);
+		ctx.fillRect(this.height,this.y+20,this.height+gapWidth,this.thicc-40);
 	}
 	ctx.fillStyle = this.color;
 	ctx.fillRect(this.height+gapWidth,this.y,(width + this.height+gapWidth),this.thicc);
-	ctx.fillRect(-20000,this.y,this.height+20000,this.thicc);
+	ctx.fillRect(-2000,this.y,this.height+2000,this.thicc);
 
 }
 
@@ -25,7 +25,7 @@ Pillar.prototype.update = function(){
 		this.barrier = 10;
 		score++;
 	}
-	this.y += 50+(score);
+	this.y += 5+(score/2);
 }
 
 Pillar.prototype.collision = function(){
