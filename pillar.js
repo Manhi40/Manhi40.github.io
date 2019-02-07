@@ -25,7 +25,8 @@ Pillar.prototype.update = function(){
 		this.barrier = 10;
 		score++;
 	}
-	this.y += speed+(Math.log(score*100+1));
+	//this.y += speed+(Math.log(score*1000+1));
+  this.y += speed+(Math.log(score+1)/Math.log(logBoi));
 }
 
 Pillar.prototype.collision = function(){

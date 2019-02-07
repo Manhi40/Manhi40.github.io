@@ -9,6 +9,8 @@ var gameStatus = 0;
 var gapWidth = 150;
 var score = 0;
 var canTran = 0;
+var aiEn = 0;
+var logBoi = 1.2;
 
 var Key = {
   _pressed: {},
@@ -18,6 +20,7 @@ var Key = {
   RIGHT: 39,
   DOWN: 40,
   SPACE: 32,
+  A:  65,
 
   isDown: function(keyCode) {
     return this._pressed[keyCode];
@@ -84,6 +87,18 @@ function gameReset(){
 
 }
 
+document.addEventListener('keydown', function(event) {
+    if(event.keyCode == 65) {
+        aiEn ^= 1;
+    }
+    else if(event.keyCode == 33){
+      speed++;
+    }
+    else if(event.keyCode == 34){
+      speed--;
+    }
+});
+
 var box = new Box(width/2,height*0.9,10,0,'rgb(0,255,0)',10);
 var pillar1 = new Pillar(0);
 var pillar2 = new Pillar((-height));
@@ -95,18 +110,22 @@ var stars = [];
 var bob = new Star();
 var i;
 var speed = 5;
-
+var aiKeyUp = 0;
+var aiKeyLeft = 0;
+var aiKeyRight = 0;
+var img = document.getElementById("logo");
 
 
 function loop(){
 
-  if(stars.length < 150){
+  while(stars.length < 150){
     var star = new Star();
     stars.push(star);
   }
 
   if(!gameStatus){
     ctx.save();
+    ctx.clearRect(-2000,-2000, 4*width, 4*height);
     ctx.fillStyle = 'rgba(0,0,0,1)';
   	ctx.fillRect(-2000,-2000,4*width,4*height);
 
@@ -114,8 +133,16 @@ function loop(){
       stars[i].update();
       stars[i].draw();
     }
+    if(aiEn){
+      ai();
 
+    }
+    else{
+      aiKeyUp =0;
+      aiKeyLeft =0;
+      ayKeyRight =0;
 
+    }
   	pillar1.update();
   	pillar1.draw();
   	pillar1.collision();

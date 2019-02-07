@@ -20,7 +20,7 @@ Box.prototype.draw = function(){
 	else if(this.velX < -1){
 	  ctx.rotate(-.526);
 	}
-
+	/*
   ctx.beginPath();
   ctx.moveTo(0,-10);
   ctx.lineTo(10,10);
@@ -28,6 +28,8 @@ Box.prototype.draw = function(){
   ctx.lineTo(-10,10);
   ctx.lineTo(0,-10);
   ctx.fill();
+	*/
+	ctx.drawImage(img,-25,-25,50,50* img.height/img.width);
 
 	//ctx.fillRect(-this.size/2,-this.size/2,this.size,this.size);
 
@@ -40,9 +42,9 @@ Box.prototype.update = function(){
   this.velX *= 0.85;
   this.velY *= 0.85;
 
-  if (Key.isDown(Key.UP)) this.laser();
+  if (Key.isDown(Key.UP) | aiKeyUp) this.laser();
   //if (Key.isDown(Key.DOWN)) this.y += 100;
-  if (Key.isDown(Key.LEFT)){
+  if (Key.isDown(Key.LEFT) | aiKeyLeft){
      this.x -= 20;
 		 this.velX =-1.1;
 		 if(this.x>0){
@@ -51,7 +53,7 @@ Box.prototype.update = function(){
 	 		}
      rotate++;
    }
-  else if (Key.isDown(Key.RIGHT)){
+  if (Key.isDown(Key.RIGHT) | aiKeyRight){
      this.x += 20;
 		 this.velX =1.1;
 		 if(this.x<width){
