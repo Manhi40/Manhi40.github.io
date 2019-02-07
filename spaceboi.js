@@ -11,6 +11,7 @@ var score = 0;
 var canTran = 0;
 var aiEn = 0;
 var logBoi = 1.2;
+var laserConst =0;
 
 var Key = {
   _pressed: {},
@@ -95,8 +96,11 @@ document.addEventListener('keydown', function(event) {
       speed++;
     }
     else if(event.keyCode == 34){
-      speed--;
+      if(speed > 0){
+        speed--;
+      }
     }
+
 });
 
 var box = new Box(width/2,height*0.9,10,0,'rgb(0,255,0)',10);

@@ -26,7 +26,7 @@ Pillar.prototype.update = function(){
 		score++;
 	}
 	//this.y += speed+(Math.log(score*1000+1));
-  this.y += speed+(Math.log(score+1)/Math.log(logBoi));
+  this.y += speed+(Math.log(score+1)/Math.log(1.3));
 }
 
 Pillar.prototype.collision = function(){
