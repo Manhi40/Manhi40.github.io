@@ -8,6 +8,7 @@ var pos = 0;
 var gameStatus = 0;
 var gapWidth = 150;
 var score = 0;
+var hScore = 0;
 var canTran = 0;
 var aiEn = 0;
 var logBoi = 1.2;
@@ -57,11 +58,22 @@ function EndGame(){
 		ctx.fillStyle = 'rgba(255,0,0,0.25)';
 		ctx.fillRect(-2000,-2000,3*width,5*height);
     ctx.save();
+    ctx.textAlign = "center";
   	ctx.fillStyle = 'blue';
   	ctx.font = '72px arial';
 
     ctx.translate(-(canTran),0);
-  	ctx.fillText(score, width/2, height/8);
+    if(score >= hScore){
+      hScore = score;
+      ctx.font = '128px arial';
+      ctx.fillText("NEW HIGH SCORE",width/2,height/2);
+      ctx.font = '72px arial';
+    }
+    ctx.translate ((width/4),height/8);
+    ctx.fillText(score,0, 0);
+    ctx.translate(width/4,0);
+    ctx.fillText("High Score: ",100,0);
+    ctx.fillText(hScore,500,0);
     ctx.restore();
 	}
 }
@@ -162,11 +174,16 @@ function loop(){
     box.update();
     box.draw();
     ctx.save();
+    ctx.textAlign = 'center';
   	ctx.fillStyle = 'blue';
   	ctx.font = '72px arial';
 
     ctx.translate(-(canTran),0);
-  	ctx.fillText(score, width/2, height/8);
+    ctx.translate ((width/4),height/8);
+    ctx.fillText(score,0, 0);
+    ctx.translate(width/4,0);
+    ctx.fillText("High Score: ",100,0);
+    ctx.fillText(hScore,500,0);
     ctx.restore();
 
 
